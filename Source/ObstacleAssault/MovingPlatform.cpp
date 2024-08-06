@@ -17,6 +17,8 @@ void AMovingPlatform::BeginPlay()
 	Super::BeginPlay();
 
 	_startLocation = GetActorLocation();
+
+	_name = GetName();
 }
 
 // Called every frame
@@ -31,7 +33,10 @@ void AMovingPlatform::Tick(float DeltaTime)
 	float distance = FVector::Distance(_startLocation, location);
 
 	if (distance >= _maxDistance)
-	{	
+	{
+		float overshoot = distance -_maxDistance;
+		UE_LOG(LogTemp, Display, TEXT("%s has overshot by %f"), *_name, overshoot);
+
 		FVector normalMovement = _movement.GetSafeNormal();
 		_startLocation += normalMovement * _maxDistance;
 		SetActorLocation(_startLocation);
