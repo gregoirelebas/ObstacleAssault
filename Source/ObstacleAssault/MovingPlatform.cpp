@@ -26,8 +26,13 @@ void AMovingPlatform::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	MovePlatform(DeltaTime);
+}
+
+void AMovingPlatform::MovePlatform(float deltaTime)
+{
 	FVector location = GetActorLocation();
-	location += _movement * DeltaTime;
+	location += _movement * deltaTime;
 	SetActorLocation(location);
 
 	float distance = FVector::Distance(_startLocation, location);
@@ -44,4 +49,3 @@ void AMovingPlatform::Tick(float DeltaTime)
 		_movement*= -1;
 	}
 }
-
