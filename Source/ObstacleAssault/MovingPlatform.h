@@ -21,14 +21,18 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 private:
-	UPROPERTY(EditAnywhere, Category = "Moving platform")
-	FVector _movement = FVector(0.0f, 0.0f, 0.0f);
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	FVector _movementVelocity = FVector(0.0f, 0.0f, 0.0f);
 
-	UPROPERTY(EditAnywhere, Category = "Moving platform")
+	UPROPERTY(EditAnywhere, Category = "Movement")
 	float _maxDistance = 0.0f;
+
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float _rotationSpeed = 5.0f;
 
 	FVector _startLocation;
 	FString _name;
 
 	void MovePlatform(float deltaTime);
+	void RotatePlatform(float deltaTime);
 };
